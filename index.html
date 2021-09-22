@@ -7,24 +7,37 @@
     <body align="center">
     
         <script>
+            document.body.style.backgroundColor="lightgrey";
+            
+
             //heading
             var heading=document.createElement("h1");
             heading.style.fontSize="40px";
-            heading.innerHTML="Start the Game :<br>"
+            heading.innerHTML="<i>Start the Game : </i> "
             document.body.appendChild(heading);
+
+            var pl=document.createElement("h1");
+            pl.style.fontSize="30px";
+            pl.innerHTML="Player1-> X &ensp;&ensp; Player2-> O"
+            document.body.appendChild(pl);
 
             //turn
             var turn=document.createElement("h1");
             turn.style.fontSize="30px";
-            turn.innerHTML="X turn"
+            turn.innerHTML="<i>X's turn"
             turn.setAttribute("id","turn")
+            turn.style.color="#6C9F02"
             document.body.appendChild(turn);
 
             //note
             var note=document.createElement("h4");
+            note.style.color="red";
             note.innerHTML="Note  :  It will check the result and shows the winner when anyone wins. Just Enjoy the game"
             document.body.appendChild(note);
 
+            // var tem=document.createElement("h1");
+            // tem.innerHTML="Welcome"
+            // surr.appendChild(tem);
 
             var game=["","","","","","","","",""];
             var symbol=1;
@@ -37,8 +50,10 @@
                 div.setAttribute("style","border:2px solid;")
                 div.style.padding="25px";
                 div.style.margin="10px";
+                div.style.borderRadius="10px"
                 div.setAttribute("onclick","getvalue("+(i-1)+")")
                 div.setAttribute("id",i-1);
+                div.style.color="#02089F"
                 document.body.appendChild(div);
                 if(i%3==0)
                 {
@@ -62,13 +77,13 @@
                     {
                         game[value]="X";
                         symbol=0;
-                        document.getElementById("turn").innerHTML="O turn"
+                        document.getElementById("turn").innerHTML="<i>O's turn"
                     }
                     else
                     {
                         game[value]="O";
                         symbol=1;
-                        document.getElementById("turn").innerHTML="X turn"
+                        document.getElementById("turn").innerHTML="<i>X's turn"
                     }
                 }
                 display();
@@ -112,6 +127,14 @@
                 return false
                 
             }
+            function playagain()
+            {
+                    var play=document.createElement("a");
+                    play.style.fontSize="40px";
+                    play.setAttribute("href","index.html")
+                    play.innerHTML="Play Again"
+                    document.body.appendChild(play);
+            }
             function submit()
             {
                 var cr=count("X");
@@ -124,7 +147,8 @@
                     console.log(check(value))
                     if(check(value))
                     {
-                        document.body.innerHTML="<h1 align='center'>X winner<br>Thank You</h1>";
+                        document.body.innerHTML="<h1 align='center'><i>Player1 Won the Game🎉🥳<br><br><i>Thank You</h1>";
+                        playagain()
                         
                     }
                 }
@@ -133,17 +157,14 @@
                     var value="O"
                     if(check(value))
                     {
-                        document.body.innerHTML="<h1 align='center'>X winner<br>Thank You</h1>";
+                        document.body.innerHTML="<h1 align='center'><i>Player2 Won the Game🎉🥳<br><br><i>Thank You</h1>";
+                        playagain()
                     }
                 }
                 if((cr+co)==9)
                 {
-                    document.body.innerHTML="<h1 align='center'>Draw Match<br></h1>";
-                    var play=document.createElement("a");
-                    play.style.fontSize="40px";
-                    play.setAttribute("href","index.html")
-                    play.innerHTML="Play Again"
-                    document.body.appendChild(play);
+                    document.body.innerHTML="<h1 align='center'><i>Draw Match😳😁<br></h1>";
+                    playagain()
                 }
             }
 
